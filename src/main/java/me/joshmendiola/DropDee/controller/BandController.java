@@ -15,13 +15,17 @@ public class BandController
     @Autowired
     BandRepository repository;
 
+    //GET MAPPINGS
+
+    //gets all bands
     @GetMapping("/bands")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Band> getBands()
+    public List<Band> getALlBands()
     {
         return repository.findAll();
     }
 
+    //gets band by singular ID
     @GetMapping("/band/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Band getBandById(@PathVariable int id)
@@ -30,12 +34,18 @@ public class BandController
         return returnBand.orElse(null);
     }
 
+    //POST MAPPINGS
+
+    //adds a single band to the database
     @PostMapping("/band")
     @ResponseStatus(HttpStatus.CREATED)
     public Band addBand(@RequestBody Band band) {
         return repository.save(band);
     }
 
+    //UPDATE MAPPINGS
+
+    //updates by ID
     @PutMapping("/band/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateBand(@RequestBody Band newBandData, @PathVariable int id)
@@ -47,15 +57,19 @@ public class BandController
         repository.save(oldBandData);
     }
 
+    //DELETE MAPPINGS
+
+    //deletes by ID
     @DeleteMapping("/band/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBand(@PathVariable int id) {
         repository.deleteById(id);
     }
 
+    //deletes all bands
     @DeleteMapping("/bands")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAllBand() {
+    public void deleteAllBands() {
         repository.deleteAll();
     }
 }
