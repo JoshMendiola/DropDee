@@ -36,15 +36,26 @@ public class BandController
         return repository.save(band);
     }
 
-    @PutMapping("/band")
+    @PutMapping("/band/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBand(@RequestBody Band band) {
-        repository.save(band);
+    public void updateBand(@RequestBody Band newBandData, @PathVariable int id)
+    {
+        Band oldBandData = getBandById(id);
+        oldBandData.setBalance(newBandData.getBalance());
+        oldBandData.setGenre(newBandData.getGenre());
+        oldBandData.setName(newBandData.getName());
+        repository.save(oldBandData);
     }
 
     @DeleteMapping("/band/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBand(@PathVariable int id) {
         repository.deleteById(id);
+    }
+
+    @DeleteMapping("/bands")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAllBand() {
+        repository.deleteAll();
     }
 }
