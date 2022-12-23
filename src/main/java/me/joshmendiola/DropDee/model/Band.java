@@ -2,8 +2,7 @@ package me.joshmendiola.DropDee.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
@@ -14,6 +13,7 @@ import java.io.Serializable;
 public class Band implements Serializable
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bandID;
     private String name;
     private String genre;
@@ -56,5 +56,12 @@ public class Band implements Serializable
     public void setBalance(int balance)
     {
         this.balance = balance;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Band band = (Band) o;
+        return getBandID() == band.getBandID();
     }
 }

@@ -3,10 +3,11 @@ package me.joshmendiola.DropDee.controller;
 import me.joshmendiola.DropDee.model.Band;
 import me.joshmendiola.DropDee.repository.BandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class BandController
@@ -15,8 +16,35 @@ public class BandController
     BandRepository repository;
 
     @GetMapping("/bands")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Band> getBands()
     {
         return repository.findAll();
+    }
+
+    @GetMapping("/band/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Band getBandById(@PathVariable int id)
+    {
+        Optional<Band> returnBand = repository.findById(id);
+        return returnBand.orElse(null);
+    }
+
+    @PostMapping("/band")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Band addBand(@RequestBody Band band) {
+        return repository.save(band);
+    }
+
+    @PutMapping("/band")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateBand(@RequestBody Band band) {
+        repository.save(band);
+    }
+
+    @DeleteMapping("/band/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBand(@PathVariable int id) {
+        repository.deleteById(id);
     }
 }
