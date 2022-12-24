@@ -1,7 +1,6 @@
 package me.joshmendiola.DropDee.controller;
 
-import me.joshmendiola.DropDee.model.Band;
-import me.joshmendiola.DropDee.model.PracticeRoom;
+import me.joshmendiola.DropDee.model.assets.PracticeRoom;
 import me.joshmendiola.DropDee.repository.PracticeRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -62,7 +61,7 @@ public class PracticeRoomController
         repository.deleteById(id);
     }
 
-    //deletes all bands
+    //deletes all practice rooms
     @DeleteMapping("/practicerooms")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAllPracticeRooms() {

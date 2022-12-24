@@ -1,6 +1,6 @@
 package me.joshmendiola.DropDee.controller;
 
-import me.joshmendiola.DropDee.model.Band;
+import me.joshmendiola.DropDee.model.assets.Band;
 import me.joshmendiola.DropDee.repository.BandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

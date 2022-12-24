@@ -1,4 +1,4 @@
-package me.joshmendiola.DropDee.model;
+package me.joshmendiola.DropDee.model.assets;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

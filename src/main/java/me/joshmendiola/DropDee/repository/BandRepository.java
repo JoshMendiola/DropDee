@@ -1,6 +1,6 @@
 package me.joshmendiola.DropDee.repository;
 
-import me.joshmendiola.DropDee.model.Band;
+import me.joshmendiola.DropDee.model.assets.Band;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

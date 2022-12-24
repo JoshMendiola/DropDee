@@ -1,0 +1,39 @@
+package me.joshmendiola.DropDee.model.assets;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import me.joshmendiola.DropDee.enums.StudioType;
+import org.springframework.data.relational.core.mapping.Table;
+
+import java.io.Serializable;
+
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "Studio")
+public class Studio implements Serializable
+{
+    @Id
+    private int studioID;
+    private StudioType studioType;
+
+    public int getStudioID()
+    {
+        return studioID;
+    }
+
+    public void setStudioID(int studioID)
+    {
+        this.studioID = studioID;
+    }
+
+    public StudioType getStudioType()
+    {
+        return studioType;
+    }
+
+    public void setStudioType(StudioType studioType)
+    {
+        this.studioType = studioType;
+    }
+}
