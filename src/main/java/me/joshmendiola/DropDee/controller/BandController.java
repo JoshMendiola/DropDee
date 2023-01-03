@@ -20,7 +20,7 @@ public class BandController
     //gets all bands
     @GetMapping("/bands")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Band> getALlBands()
+    public List<Band> getAllBands()
     {
         return repository.findAll();
     }
@@ -32,6 +32,14 @@ public class BandController
     {
         Optional<Band> returnBand = repository.findById(id);
         return returnBand.orElse(null);
+    }
+
+    //gets band by name
+    @GetMapping("/band/name/{name}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Band getBandByName(@PathVariable String name)
+    {
+        return repository.findByName(name).get(0);
     }
 
     //POST MAPPINGS

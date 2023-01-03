@@ -2,6 +2,7 @@ package me.joshmendiola.DropDee.controller;
 
 import me.joshmendiola.DropDee.model.assets.Band;
 import me.joshmendiola.DropDee.repository.BandRepository;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,9 +28,17 @@ public class BandControllerTests
         bandRepository.deleteAll();
     }
 
+    @After
+    public void tearDown() throws Exception
+    {
+        bandRepository.deleteAll();
+    }
+
     @Test
     public void getAllBands()
     {
+        bandRepository.deleteAll();
+
         Band band = new Band();
         band.setBandID(1);
         band.setName("Johmen");
@@ -46,8 +55,9 @@ public class BandControllerTests
 
         bandRepository.save(secondBand);
 
-        List<Band> aList = bandRepository.findAll();
-        assertEquals(aList.size(), 2);
+        List<Band> bandList = bandRepository.findAll();
+        System.out.println(bandList);
+        assertEquals(bandList.size(), 2);
     }
 
     @Test
@@ -69,8 +79,6 @@ public class BandControllerTests
 
         bandRepository.save(secondBand);
 
-        System.out.println(bandRepository.findAll());
-
         Optional<Band> firstRetrievedBand = bandRepository.findById(1000);
         Optional<Band> secondRetrievedBand = bandRepository.findById(2000);
 
@@ -78,6 +86,36 @@ public class BandControllerTests
         assert(firstRetrievedBand.get().equals(firstBand));
         assert(secondRetrievedBand.isPresent());
         assert(secondRetrievedBand.get().equals(secondBand));
+
+    }
+
+
+    @Test
+    public void getBandByName()
+    {
+        Band firstBand = new Band();
+        firstBand.setBandID(1000);
+        firstBand.setName("Johmen");
+        firstBand.setGenre("Alternative/Indie");
+        firstBand.setBalance(200);
+
+        bandRepository.save(firstBand);
+
+        Band secondBand = new Band();
+        secondBand.setBandID(2000);
+        secondBand.setName("Judds Anarchy");
+        secondBand.setGenre("Alternative");
+        secondBand.setBalance(250);
+
+        bandRepository.save(secondBand);
+
+        System.out.println(bandRepository.findAll());
+
+        Band firstRetrievedBand = bandRepository.findByName("Johmen").get(0);
+        Band secondRetrievedBand = bandRepository.findByName("Judds Anarchy").get(0);
+
+        assert(firstRetrievedBand.equals(firstBand));
+        assert(secondRetrievedBand.equals(secondBand));
 
     }
 }
