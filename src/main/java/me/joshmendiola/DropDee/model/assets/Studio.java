@@ -1,6 +1,7 @@
 package me.joshmendiola.DropDee.model.assets;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import me.joshmendiola.DropDee.enums.StudioType;
@@ -35,5 +36,12 @@ public class Studio implements Serializable
     public void setStudioType(StudioType studioType)
     {
         this.studioType = studioType;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Studio studio = (Studio) o;
+        return getStudioID() == studio.getStudioID();
     }
 }

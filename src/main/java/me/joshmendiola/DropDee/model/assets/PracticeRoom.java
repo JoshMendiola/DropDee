@@ -7,6 +7,7 @@ import me.joshmendiola.DropDee.enums.RoomSize;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -57,5 +58,29 @@ public class PracticeRoom implements Serializable
     public void setHasMicrophones(Boolean hasMicrophones)
     {
         this.hasMicrophones = hasMicrophones;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PracticeRoom practiceRoom = (PracticeRoom) o;
+        return getRoomID() == practiceRoom.getRoomID();
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(roomID, roomSize, hasMixingBoard, hasMicrophones);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "PracticeRoom{" +
+                "roomID=" + roomID +
+                ", roomSize=" + roomSize +
+                ", hasMixingBoard=" + hasMixingBoard +
+                ", hasMicrophones=" + hasMicrophones +
+                '}';
     }
 }

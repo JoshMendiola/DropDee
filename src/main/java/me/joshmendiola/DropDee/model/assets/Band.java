@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -13,7 +14,6 @@ import java.io.Serializable;
 public class Band implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bandID;
     private String name;
     private String genre;
@@ -58,10 +58,28 @@ public class Band implements Serializable
         this.balance = balance;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Band band = (Band) o;
         return getBandID() == band.getBandID();
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(bandID, name, genre, balance);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Band{" +
+                "bandID=" + bandID +
+                ", name='" + name + '\'' +
+                ", genre='" + genre + '\'' +
+                ", balance=" + balance +
+                '}';
     }
 }
