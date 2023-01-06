@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface BandRepository extends JpaRepository<Band, Integer>
 {
-    List<Band> findByName(String artistName);
+    List<Band> findByName(String name);
 }

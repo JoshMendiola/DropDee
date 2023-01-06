@@ -37,8 +37,6 @@ public class BandControllerTests
     @Test
     public void getAllBands()
     {
-        bandRepository.deleteAll();
-
         Band band = new Band();
         band.setBandID(1);
         band.setName("Johmen");
@@ -56,7 +54,6 @@ public class BandControllerTests
         bandRepository.save(secondBand);
 
         List<Band> bandList = bandRepository.findAll();
-        System.out.println(bandList);
         assertEquals(bandList.size(), 2);
     }
 
@@ -116,6 +113,29 @@ public class BandControllerTests
 
         assert(firstRetrievedBand.equals(firstBand));
         assert(secondRetrievedBand.equals(secondBand));
+
+    }
+
+    @Test
+    public void updateArtist()
+    {
+        Band testBand = new Band();
+        testBand.setBandID(1000);
+        testBand.setName("Johmen");
+        testBand.setGenre("Alternative/Indie");
+        testBand.setBalance(200);
+
+        bandRepository.save(testBand);
+
+        testBand.setName("Johmen and the Johmens");
+        testBand.setGenre("Punk/Surf");
+        testBand.setBalance(150);
+
+        bandRepository.save(testBand);
+
+        assert(bandRepository.findById(1000).isPresent());
+        assert(bandRepository.findById(1000).get().equals(testBand));
+
 
     }
 }
