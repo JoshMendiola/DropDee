@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -58,4 +59,53 @@ public class PracticeRoomControllerTests
         assertEquals(practiceRoomList.size(), 2);
     }
 
+    @Test
+    public void getBandByID()
+    {
+        PracticeRoom practiceRoom = new PracticeRoom();
+        practiceRoom.setRoomID(1);
+        practiceRoom.setRoomSize(RoomSize.SMALL);
+        practiceRoom.setHasMicrophones(false);
+        practiceRoom.setHasMixingBoard(true);
+
+        practiceRoomRepository.save(practiceRoom);
+
+        PracticeRoom practiceRoomTwo = new PracticeRoom();
+        practiceRoomTwo.setRoomID(2);
+        practiceRoomTwo.setRoomSize(RoomSize.MEDIUM);
+        practiceRoomTwo.setHasMicrophones(true);
+        practiceRoomTwo.setHasMixingBoard(true);
+
+        practiceRoomRepository.save(practiceRoomTwo);
+
+        Optional<PracticeRoom> firstRetrievedPracticeRoom = practiceRoomRepository.findById(1);
+        Optional<PracticeRoom> secondRetrievedPracticeRoom = practiceRoomRepository.findById(2);
+
+        assert(firstRetrievedPracticeRoom.isPresent());
+        assert(firstRetrievedPracticeRoom.get().equals(practiceRoom));
+        assert(secondRetrievedPracticeRoom.isPresent());
+        assert(secondRetrievedPracticeRoom.get().equals(practiceRoomTwo));
+    }
+
+    @Test
+    public void updateArtist()
+    {
+        PracticeRoom practiceRoom = new PracticeRoom();
+        practiceRoom.setRoomID(1);
+        practiceRoom.setRoomSize(RoomSize.SMALL);
+        practiceRoom.setHasMicrophones(false);
+        practiceRoom.setHasMixingBoard(true);
+
+        practiceRoomRepository.save(practiceRoom);
+
+        practiceRoom.setRoomSize(RoomSize.MEDIUM);
+        practiceRoom.setHasMicrophones(true);
+
+        practiceRoomRepository.save(practiceRoom);
+
+        assert(practiceRoomRepository.findById(1).isPresent());
+        assert(practiceRoomRepository.findById(1).get().equals(practiceRoom));
+
+
+    }
 }
