@@ -2,6 +2,8 @@ package me.joshmendiola.DropDee.model.assets;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import me.joshmendiola.DropDee.enums.RoomSize;
 import org.springframework.data.relational.core.mapping.Table;
@@ -11,11 +13,12 @@ import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "PracticeRoom")
+@Table(name = "Practice_Room")
 public class PracticeRoom implements Serializable
 {
     @Id
     private int roomID;
+    @Enumerated(EnumType.STRING)
     private RoomSize roomSize;
     private Boolean hasMixingBoard;
     private Boolean hasMicrophones;
