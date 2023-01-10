@@ -1,9 +1,7 @@
 package me.joshmendiola.DropDee.model.assets;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import me.joshmendiola.DropDee.enums.StudioType;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -16,6 +14,8 @@ public class Studio implements Serializable
 {
     @Id
     private int studioID;
+
+    @Enumerated(EnumType.STRING)
     private StudioType studioType;
 
     public int getStudioID()
@@ -43,5 +43,14 @@ public class Studio implements Serializable
         if (o == null || getClass() != o.getClass()) return false;
         Studio studio = (Studio) o;
         return getStudioID() == studio.getStudioID();
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Studio{" +
+                "studioID=" + studioID +
+                ", studioType=" + studioType +
+                '}';
     }
 }
