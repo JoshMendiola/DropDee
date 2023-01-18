@@ -1,11 +1,8 @@
-package me.joshmendiola.DropDee.controller;
+package me.joshmendiola.DropDee.controller.assets;
 
-import me.joshmendiola.DropDee.enums.RoomSize;
 import me.joshmendiola.DropDee.enums.StudioType;
-import me.joshmendiola.DropDee.model.assets.PracticeRoom;
 import me.joshmendiola.DropDee.model.assets.Studio;
-import me.joshmendiola.DropDee.repository.PracticeRoomRepository;
-import me.joshmendiola.DropDee.repository.StudioRepository;
+import me.joshmendiola.DropDee.repository.assets.StudioRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 import java.util.Optional;
 
-import static me.joshmendiola.DropDee.enums.StudioType.FREELANCE;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)

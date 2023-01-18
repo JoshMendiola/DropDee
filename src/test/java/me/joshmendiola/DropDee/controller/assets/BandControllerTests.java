@@ -1,7 +1,7 @@
-package me.joshmendiola.DropDee.controller;
+package me.joshmendiola.DropDee.controller.assets;
 
 import me.joshmendiola.DropDee.model.assets.Band;
-import me.joshmendiola.DropDee.repository.BandRepository;
+import me.joshmendiola.DropDee.repository.assets.BandRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

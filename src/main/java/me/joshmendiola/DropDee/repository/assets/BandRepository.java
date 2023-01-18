@@ -1,4 +1,4 @@
-package me.joshmendiola.DropDee.repository;
+package me.joshmendiola.DropDee.repository.assets;
 
 import me.joshmendiola.DropDee.model.assets.Band;
 import org.springframework.data.jpa.repository.JpaRepository;

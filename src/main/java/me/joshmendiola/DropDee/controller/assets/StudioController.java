@@ -1,9 +1,7 @@
-package me.joshmendiola.DropDee.controller;
+package me.joshmendiola.DropDee.controller.assets;
 
-import me.joshmendiola.DropDee.model.assets.PracticeRoom;
 import me.joshmendiola.DropDee.model.assets.Studio;
-import me.joshmendiola.DropDee.repository.PracticeRoomRepository;
-import me.joshmendiola.DropDee.repository.StudioRepository;
+import me.joshmendiola.DropDee.repository.assets.StudioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

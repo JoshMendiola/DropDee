@@ -1,9 +1,8 @@
-package me.joshmendiola.DropDee.controller;
+package me.joshmendiola.DropDee.controller.assets;
 
 import me.joshmendiola.DropDee.enums.RoomSize;
-import me.joshmendiola.DropDee.model.assets.Band;
 import me.joshmendiola.DropDee.model.assets.PracticeRoom;
-import me.joshmendiola.DropDee.repository.PracticeRoomRepository;
+import me.joshmendiola.DropDee.repository.assets.PracticeRoomRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
