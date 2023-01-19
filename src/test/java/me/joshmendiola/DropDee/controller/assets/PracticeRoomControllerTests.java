@@ -59,7 +59,7 @@ public class PracticeRoomControllerTests
     }
 
     @Test
-    public void getBandByID()
+    public void getPracticeRoomByID()
     {
         PracticeRoom practiceRoom = new PracticeRoom();
         practiceRoom.setRoomID(1);
@@ -87,7 +87,7 @@ public class PracticeRoomControllerTests
     }
 
     @Test
-    public void updateArtist()
+    public void updatePracticeRoom()
     {
         PracticeRoom practiceRoom = new PracticeRoom();
         practiceRoom.setRoomID(1);

@@ -145,9 +145,58 @@ public class Employee implements Serializable
     public boolean equals(Object o)
     {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return employeeID == employee.employeeID && Objects.equals(phoneNumber, employee.phoneNumber) && Objects.equals(employeeEmail, employee.employeeEmail) && Objects.equals(personalEmail, employee.personalEmail) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(position, employee.position) && Objects.equals(hourlyPay, employee.hourlyPay) && Objects.equals(birthday, employee.birthday) && Objects.equals(socialSecurity, employee.socialSecurity) && Objects.equals(startDate, employee.startDate);
+        if (!(o instanceof Employee employee)) return false;
+
+        if(getEmployeeID() == employee.getEmployeeID())
+        {
+            System.out.println("ID");
+        }
+        if(Objects.equals(getPhoneNumber(), employee.getPhoneNumber()))
+        {
+            System.out.println("phone");
+        }
+        if(Objects.equals(getEmployeeEmail(), employee.getEmployeeEmail()))
+        {
+            System.out.println("Employee email");
+        }
+        if(Objects.equals(getPersonalEmail(), employee.getPersonalEmail()))
+        {
+            System.out.println("Personal email");
+        }
+
+        if(Objects.equals(getFirstName(), employee.getFirstName()))
+        {
+            System.out.println("first name");
+        }
+        if(Objects.equals(getLastName(), employee.getLastName()))
+        {
+            System.out.println("last name");
+        }
+        if(getPosition() == employee.getPosition())
+        {
+            System.out.println("position");
+        }
+        if(Objects.equals(getHourlyPay(), employee.getHourlyPay()))
+        {
+            System.out.println("hourly pay");
+        }
+
+        if(Objects.equals(getBirthday(), employee.getBirthday()))
+        {
+            System.out.println("birthday");
+        }
+        if(Objects.equals(getSocialSecurity(), employee.getSocialSecurity()))
+        {
+            System.out.println("ss number");
+        }
+        if(Objects.equals(getStartDate(), employee.getStartDate()))
+        {
+            System.out.println("start date");
+        }
+
+
+
+        return getEmployeeID() == employee.getEmployeeID() && Objects.equals(getPhoneNumber(), employee.getPhoneNumber()) && Objects.equals(getEmployeeEmail(), employee.getEmployeeEmail()) && Objects.equals(getPersonalEmail(), employee.getPersonalEmail()) && Objects.equals(getFirstName(), employee.getFirstName()) && Objects.equals(getLastName(), employee.getLastName()) && getPosition() == employee.getPosition() && Objects.equals(getHourlyPay(), employee.getHourlyPay()) && Objects.equals(getBirthday(), employee.getBirthday()) && Objects.equals(getSocialSecurity(), employee.getSocialSecurity()) && Objects.equals(getStartDate(), employee.getStartDate());
     }
 
     @Override

@@ -38,14 +38,15 @@ public class EmployeeControllerTests
     }
 
     @Test
-    public void getAllBands()
+    public void getAllEmployees()
     {
         Employee employee = new Employee();
-        Date date = Date.valueOf("2000-01-01");
+        Date birthdayOne = Date.valueOf("2000-01-01");
+        Date startingDateOne = Date.valueOf("2023-01-19");
 
         employee.setEmployeeID(95620);
         employee.setEmployeeEmail("tester@company.com");
-        employee.setBirthday(date);
+        employee.setBirthday(birthdayOne);
         employee.setFirstName("John D");
         employee.setHourlyPay(42.50);
         employee.setLastName("Fake");
@@ -53,16 +54,17 @@ public class EmployeeControllerTests
         employee.setPhoneNumber("512-555-1234");
         employee.setPosition(Position.MANAGER);
         employee.setSocialSecurity("123456789");
-        employee.setStartDate(new Date(System.currentTimeMillis()));
+        employee.setStartDate(startingDateOne);
 
         employeeRepository.save(employee);
 
         Employee employeeTwo = new Employee();
-        Date dateTwo = Date.valueOf("2002-01-01");
+        Date birthdayTwo = Date.valueOf("2002-01-01");
+        Date startingDateTwo = Date.valueOf("2022-11-21");
 
         employeeTwo.setEmployeeID(47293);
         employeeTwo.setEmployeeEmail("testerTwo@company.com");
-        employeeTwo.setBirthday(dateTwo);
+        employeeTwo.setBirthday(birthdayTwo);
         employeeTwo.setFirstName("Angela M");
         employeeTwo.setHourlyPay(36.42);
         employeeTwo.setLastName("Notreal");
@@ -70,7 +72,7 @@ public class EmployeeControllerTests
         employeeTwo.setPhoneNumber("512-555-4321");
         employeeTwo.setPosition(Position.AUDIO_ENGINEER);
         employeeTwo.setSocialSecurity("987654321");
-        employeeTwo.setStartDate(new Date(System.currentTimeMillis()));
+        employeeTwo.setStartDate(startingDateTwo);
 
         employeeRepository.save(employeeTwo);
 
@@ -79,14 +81,15 @@ public class EmployeeControllerTests
     }
 
     @Test
-    public void getBandByID()
+    public void getEmployeeByID()
     {
         Employee employee = new Employee();
-        Date date = Date.valueOf("2000-01-01");
+        Date birthdayOne = Date.valueOf("2000-01-01");
+        Date startingDateOne = Date.valueOf("2023-01-19");
 
         employee.setEmployeeID(95620);
         employee.setEmployeeEmail("tester@company.com");
-        employee.setBirthday(date);
+        employee.setBirthday(birthdayOne);
         employee.setFirstName("John D");
         employee.setHourlyPay(42.50);
         employee.setLastName("Fake");
@@ -94,16 +97,17 @@ public class EmployeeControllerTests
         employee.setPhoneNumber("512-555-1234");
         employee.setPosition(Position.MANAGER);
         employee.setSocialSecurity("123456789");
-        employee.setStartDate(new Date(System.currentTimeMillis()));
+        employee.setStartDate(startingDateOne);
 
         employeeRepository.save(employee);
 
         Employee employeeTwo = new Employee();
-        Date dateTwo = Date.valueOf("2002-01-01");
+        Date birthdayTwo = Date.valueOf("2002-01-01");
+        Date startingDateTwo = Date.valueOf("2022-11-21");
 
         employeeTwo.setEmployeeID(47293);
         employeeTwo.setEmployeeEmail("testerTwo@company.com");
-        employeeTwo.setBirthday(dateTwo);
+        employeeTwo.setBirthday(birthdayTwo);
         employeeTwo.setFirstName("Angela M");
         employeeTwo.setHourlyPay(36.42);
         employeeTwo.setLastName("Notreal");
@@ -111,12 +115,15 @@ public class EmployeeControllerTests
         employeeTwo.setPhoneNumber("512-555-4321");
         employeeTwo.setPosition(Position.AUDIO_ENGINEER);
         employeeTwo.setSocialSecurity("987654321");
-        employeeTwo.setStartDate(new Date(System.currentTimeMillis()));
+        employeeTwo.setStartDate(startingDateTwo);
 
         employeeRepository.save(employeeTwo);
 
         Optional<Employee> firstRetrievedEmployee = employeeRepository.findById(95620);
         Optional<Employee> secondRetrievedEmployee = employeeRepository.findById(47293);
+
+        System.out.println(firstRetrievedEmployee.get());
+        System.out.println(employee);
 
         assert(firstRetrievedEmployee.isPresent());
         assert(firstRetrievedEmployee.get().equals(employee));
