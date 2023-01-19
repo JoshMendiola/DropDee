@@ -2,11 +2,14 @@ package me.joshmendiola.DropDee.model.employees;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import me.joshmendiola.DropDee.enums.Position;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -21,11 +24,12 @@ public class Employee implements Serializable
     private String personalEmail;
     private String firstName;
     private String lastName;
-    private String position;
+    @Enumerated(EnumType.STRING)
+    private Position position;
     private Double hourlyPay;
-    private Timestamp birthday;
+    private Date birthday;
     private String socialSecurity;
-    private Timestamp startDate;
+    private Date startDate;
 
     public int getEmployeeID()
     {
@@ -87,12 +91,12 @@ public class Employee implements Serializable
         this.lastName = lastName;
     }
 
-    public String getPosition()
+    public Position getPosition()
     {
         return position;
     }
 
-    public void setPosition(String position)
+    public void setPosition(Position position)
     {
         this.position = position;
     }
@@ -107,12 +111,12 @@ public class Employee implements Serializable
         this.hourlyPay = hourlyPay;
     }
 
-    public Timestamp getBirthday()
+    public Date getBirthday()
     {
         return birthday;
     }
 
-    public void setBirthday(Timestamp birthday)
+    public void setBirthday(Date birthday)
     {
         this.birthday = birthday;
     }
@@ -127,12 +131,12 @@ public class Employee implements Serializable
         this.socialSecurity = socialSecurity;
     }
 
-    public Timestamp getStartDate()
+    public Date getStartDate()
     {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate)
+    public void setStartDate(Date startDate)
     {
         this.startDate = startDate;
     }
