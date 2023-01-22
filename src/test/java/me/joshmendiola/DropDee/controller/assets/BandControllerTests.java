@@ -22,10 +22,27 @@ public class BandControllerTests
     @Autowired
     BandRepository bandRepository;
 
+    private final Band firstBand = new Band();
+    private final Band secondBand = new Band();
+
     @Before
     public void setUp() throws Exception
     {
         bandRepository.deleteAll();
+
+        firstBand.setBandID(1000);
+        firstBand.setName("Johmen");
+        firstBand.setGenre("Alternative/Indie");
+        firstBand.setBalance(200);
+
+        bandRepository.save(firstBand);
+
+        secondBand.setBandID(2000);
+        secondBand.setName("Judds Anarchy");
+        secondBand.setGenre("Alternative");
+        secondBand.setBalance(250);
+
+        bandRepository.save(secondBand);
     }
 
     @After
@@ -37,22 +54,6 @@ public class BandControllerTests
     @Test
     public void getAllBands()
     {
-        Band band = new Band();
-        band.setBandID(1);
-        band.setName("Johmen");
-        band.setGenre("Alternative/Indie");
-        band.setBalance(200);
-
-        bandRepository.save(band);
-
-        Band secondBand = new Band();
-        secondBand.setBandID(2);
-        secondBand.setName("Judds Anarchy");
-        secondBand.setGenre("Alternative");
-        secondBand.setBalance(250);
-
-        bandRepository.save(secondBand);
-
         List<Band> bandList = bandRepository.findAll();
         assertEquals(bandList.size(), 2);
     }
@@ -60,24 +61,11 @@ public class BandControllerTests
     @Test
     public void getBandByID()
     {
-        Band firstBand = new Band();
-        firstBand.setBandID(1000);
-        firstBand.setName("Johmen");
-        firstBand.setGenre("Alternative/Indie");
-        firstBand.setBalance(200);
-
-        bandRepository.save(firstBand);
-
-        Band secondBand = new Band();
-        secondBand.setBandID(2000);
-        secondBand.setName("Judds Anarchy");
-        secondBand.setGenre("Alternative");
-        secondBand.setBalance(250);
-
-        bandRepository.save(secondBand);
-
         Optional<Band> firstRetrievedBand = bandRepository.findById(1000);
         Optional<Band> secondRetrievedBand = bandRepository.findById(2000);
+
+        System.out.println(firstRetrievedBand.get());
+        System.out.println(firstBand);
 
         assert(firstRetrievedBand.isPresent());
         assert(firstRetrievedBand.get().equals(firstBand));
@@ -90,43 +78,17 @@ public class BandControllerTests
     @Test
     public void getBandByName()
     {
-        Band firstBand = new Band();
-        firstBand.setBandID(1000);
-        firstBand.setName("Johmen");
-        firstBand.setGenre("Alternative/Indie");
-        firstBand.setBalance(200);
+        List<Band> bandList = bandRepository.findByName("Johmen");
 
-        bandRepository.save(firstBand);
-
-        Band secondBand = new Band();
-        secondBand.setBandID(2000);
-        secondBand.setName("Judds Anarchy");
-        secondBand.setGenre("Alternative");
-        secondBand.setBalance(250);
-
-        bandRepository.save(secondBand);
-
-        System.out.println(bandRepository.findAll());
-
-        Band firstRetrievedBand = bandRepository.findByName("Johmen").get(0);
-        Band secondRetrievedBand = bandRepository.findByName("Judds Anarchy").get(0);
-
-        assert(firstRetrievedBand.equals(firstBand));
-        assert(secondRetrievedBand.equals(secondBand));
-
+        assert(bandList.size() == 1);
+        assert(bandList.get(0).equals(firstBand));
     }
 
     @Test
-    public void updateArtist()
+    public void updateBand()
     {
         Band testBand = new Band();
         testBand.setBandID(1000);
-        testBand.setName("Johmen");
-        testBand.setGenre("Alternative/Indie");
-        testBand.setBalance(200);
-
-        bandRepository.save(testBand);
-
         testBand.setName("Johmen and the Johmens");
         testBand.setGenre("Punk/Surf");
         testBand.setBalance(150);

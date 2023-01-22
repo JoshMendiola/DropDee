@@ -35,6 +35,14 @@ public class EmployeeController
         return returnEmployee.orElse(null);
     }
 
+
+    @GetMapping("/employee/{lastName}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public List<Employee> getEmployeeByLastName(@PathVariable String lastName)
+    {
+        return employeeRepository.findByLastName(lastName);
+    }
+
     //POST MAPPINGS
 
     //adds a single employee to the database
