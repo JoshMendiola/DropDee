@@ -23,10 +23,23 @@ public class StudioControllerTests
     @Autowired
     StudioRepository studioRepository;
 
+    Studio studio = new Studio();
+    Studio studioTwo = new Studio();
+
     @Before
     public void setUp() throws Exception
     {
         studioRepository.deleteAll();
+
+        studio.setStudioID(10);
+        studio.setStudioType(StudioType.FREELANCE);
+
+        studioRepository.save(studio);
+
+        studioTwo.setStudioID(20);
+        studioTwo.setStudioType(StudioType.IN_HOUSE);
+
+        studioRepository.save(studioTwo);
     }
 
     @After
@@ -38,20 +51,6 @@ public class StudioControllerTests
     @Test
     public void getAllStudios()
     {
-        Studio studio = new Studio();
-        studio.setStudioID(10);
-        studio.setStudioType(StudioType.FREELANCE);
-
-        studioRepository.save(studio);
-
-        Studio studioTwo = new Studio();
-        studioTwo.setStudioID(20);
-        studioTwo.setStudioType(StudioType.IN_HOUSE);
-
-        studioRepository.save(studioTwo);
-
-        System.out.println(studioRepository.findAll());
-
         List<Studio> studiosList = studioRepository.findAll();
         assertEquals(studiosList.size(), 2);
     }
@@ -59,19 +58,6 @@ public class StudioControllerTests
     @Test
     public void getStudioByID()
     {
-        Studio studio = new Studio();
-        studio.setStudioID(10);
-        studio.setStudioType(StudioType.FREELANCE);
-
-        studioRepository.save(studio);
-
-        Studio studioTwo = new Studio();
-        studioTwo.setStudioID(20);
-        studioTwo.setStudioType(StudioType.IN_HOUSE);
-
-        studioRepository.save(studioTwo);
-
-
         Optional<Studio> firstRetrievedStudio = studioRepository.findById(10);
         Optional<Studio> secondRetrievedStudio = studioRepository.findById(20);
 
@@ -84,15 +70,8 @@ public class StudioControllerTests
     @Test
     public void updateStudio()
     {
-        Studio studio = new Studio();
         studio.setStudioID(10);
         studio.setStudioType(StudioType.FREELANCE);
-
-        studioRepository.save(studio);
-
-        studio.setStudioType(StudioType.IN_HOUSE);
-
-        studioRepository.save(studio);
 
         assert(studioRepository.findById(10).isPresent());
         assert(studioRepository.findById(10).get().equals(studio));

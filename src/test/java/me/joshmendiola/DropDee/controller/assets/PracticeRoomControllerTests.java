@@ -23,10 +23,25 @@ public class PracticeRoomControllerTests
     @Autowired
     PracticeRoomRepository practiceRoomRepository;
 
+    private final PracticeRoom practiceRoom = new PracticeRoom();
+    private final PracticeRoom practiceRoomTwo = new PracticeRoom();
     @Before
     public void setUp() throws Exception
     {
         practiceRoomRepository.deleteAll();
+        practiceRoom.setRoomID(1);
+        practiceRoom.setRoomSize(RoomSize.SMALL);
+        practiceRoom.setHasMicrophones(false);
+        practiceRoom.setHasMixingBoard(true);
+
+        practiceRoomRepository.save(practiceRoom);
+
+        practiceRoomTwo.setRoomID(2);
+        practiceRoomTwo.setRoomSize(RoomSize.MEDIUM);
+        practiceRoomTwo.setHasMicrophones(true);
+        practiceRoomTwo.setHasMixingBoard(true);
+
+        practiceRoomRepository.save(practiceRoomTwo);
     }
 
     @After
@@ -38,22 +53,6 @@ public class PracticeRoomControllerTests
     @Test
     public void getAllPracticeRooms()
     {
-        PracticeRoom practiceRoom = new PracticeRoom();
-        practiceRoom.setRoomID(1);
-        practiceRoom.setRoomSize(RoomSize.SMALL);
-        practiceRoom.setHasMicrophones(false);
-        practiceRoom.setHasMixingBoard(true);
-
-        practiceRoomRepository.save(practiceRoom);
-
-        PracticeRoom practiceRoomTwo = new PracticeRoom();
-        practiceRoomTwo.setRoomID(2);
-        practiceRoomTwo.setRoomSize(RoomSize.MEDIUM);
-        practiceRoomTwo.setHasMicrophones(true);
-        practiceRoomTwo.setHasMixingBoard(true);
-
-        practiceRoomRepository.save(practiceRoomTwo);
-
         List<PracticeRoom> practiceRoomList = practiceRoomRepository.findAll();
         assertEquals(practiceRoomList.size(), 2);
     }
@@ -61,22 +60,6 @@ public class PracticeRoomControllerTests
     @Test
     public void getPracticeRoomByID()
     {
-        PracticeRoom practiceRoom = new PracticeRoom();
-        practiceRoom.setRoomID(1);
-        practiceRoom.setRoomSize(RoomSize.SMALL);
-        practiceRoom.setHasMicrophones(false);
-        practiceRoom.setHasMixingBoard(true);
-
-        practiceRoomRepository.save(practiceRoom);
-
-        PracticeRoom practiceRoomTwo = new PracticeRoom();
-        practiceRoomTwo.setRoomID(2);
-        practiceRoomTwo.setRoomSize(RoomSize.MEDIUM);
-        practiceRoomTwo.setHasMicrophones(true);
-        practiceRoomTwo.setHasMixingBoard(true);
-
-        practiceRoomRepository.save(practiceRoomTwo);
-
         Optional<PracticeRoom> firstRetrievedPracticeRoom = practiceRoomRepository.findById(1);
         Optional<PracticeRoom> secondRetrievedPracticeRoom = practiceRoomRepository.findById(2);
 
@@ -89,14 +72,6 @@ public class PracticeRoomControllerTests
     @Test
     public void updatePracticeRoom()
     {
-        PracticeRoom practiceRoom = new PracticeRoom();
-        practiceRoom.setRoomID(1);
-        practiceRoom.setRoomSize(RoomSize.SMALL);
-        practiceRoom.setHasMicrophones(false);
-        practiceRoom.setHasMixingBoard(true);
-
-        practiceRoomRepository.save(practiceRoom);
-
         practiceRoom.setRoomSize(RoomSize.MEDIUM);
         practiceRoom.setHasMicrophones(true);
 
@@ -104,7 +79,5 @@ public class PracticeRoomControllerTests
 
         assert(practiceRoomRepository.findById(1).isPresent());
         assert(practiceRoomRepository.findById(1).get().equals(practiceRoom));
-
-
     }
 }
