@@ -64,9 +64,6 @@ public class BandControllerTests
         Optional<Band> firstRetrievedBand = bandRepository.findById(1000);
         Optional<Band> secondRetrievedBand = bandRepository.findById(2000);
 
-        System.out.println(firstRetrievedBand.get());
-        System.out.println(firstBand);
-
         assert(firstRetrievedBand.isPresent());
         assert(firstRetrievedBand.get().equals(firstBand));
         assert(secondRetrievedBand.isPresent());

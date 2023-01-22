@@ -2,6 +2,8 @@ package me.joshmendiola.DropDee.model.assets;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import me.joshmendiola.DropDee.enums.Condition;
 import org.springframework.data.relational.core.mapping.Table;
@@ -19,6 +21,8 @@ public class Equipment
     private String model;
     private double value;
     private double hourlyRate;
+
+    @Enumerated(EnumType.STRING)
     private Condition condition;
     private String purpose;
 
