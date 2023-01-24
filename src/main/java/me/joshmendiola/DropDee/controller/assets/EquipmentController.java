@@ -1,6 +1,5 @@
 package me.joshmendiola.DropDee.controller.assets;
 
-import me.joshmendiola.DropDee.model.assets.Band;
 import me.joshmendiola.DropDee.model.assets.Equipment;
 import me.joshmendiola.DropDee.repository.assets.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +58,7 @@ public class EquipmentController
     {
         Equipment equipment = getEquipmentById(id);
         equipment.setBrand(newEquipmentData.getBrand());
-        equipment.setCondition(newEquipmentData.getCondition());
+        equipment.setItemCondition(newEquipmentData.getItemCondition());
         equipment.setHourlyRate(newEquipmentData.getHourlyRate());
         equipment.setModel(newEquipmentData.getModel());
         equipment.setPurpose(newEquipmentData.getPurpose());

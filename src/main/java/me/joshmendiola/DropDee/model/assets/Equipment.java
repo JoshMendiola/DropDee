@@ -21,9 +21,8 @@ public class Equipment
     private String model;
     private double value;
     private double hourlyRate;
-
     @Enumerated(EnumType.STRING)
-    private Condition condition;
+    private Condition itemCondition;
     private String purpose;
 
     public int getEquipmentID()
@@ -76,14 +75,14 @@ public class Equipment
         this.hourlyRate = hourlyRate;
     }
 
-    public Condition getCondition()
+    public Condition getItemCondition()
     {
-        return condition;
+        return itemCondition;
     }
 
-    public void setCondition(Condition condition)
+    public void setItemCondition(Condition itemCondition)
     {
-        this.condition = condition;
+        this.itemCondition = itemCondition;
     }
 
     public String getPurpose()
@@ -100,15 +99,14 @@ public class Equipment
     public boolean equals(Object o)
     {
         if (this == o) return true;
-        if (!(o instanceof Equipment)) return false;
-        Equipment equipment = (Equipment) o;
-        return getEquipmentID() == equipment.getEquipmentID() && Double.compare(equipment.getValue(), getValue()) == 0 && Double.compare(equipment.getHourlyRate(), getHourlyRate()) == 0 && Objects.equals(getBrand(), equipment.getBrand()) && Objects.equals(getModel(), equipment.getModel()) && getCondition() == equipment.getCondition() && Objects.equals(getPurpose(), equipment.getPurpose());
+        if (!(o instanceof Equipment equipment)) return false;
+        return getEquipmentID() == equipment.getEquipmentID() && Double.compare(equipment.getValue(), getValue()) == 0 && Double.compare(equipment.getHourlyRate(), getHourlyRate()) == 0 && Objects.equals(getBrand(), equipment.getBrand()) && Objects.equals(getModel(), equipment.getModel()) && getItemCondition() == equipment.getItemCondition() && Objects.equals(getPurpose(), equipment.getPurpose());
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getEquipmentID(), getBrand(), getModel(), getValue(), getHourlyRate(), getCondition(), getPurpose());
+        return Objects.hash(getEquipmentID(), getBrand(), getModel(), getValue(), getHourlyRate(), getItemCondition(), getPurpose());
     }
 
     @Override
@@ -120,7 +118,7 @@ public class Equipment
                 ", model='" + model + '\'' +
                 ", value=" + value +
                 ", hourlyRate=" + hourlyRate +
-                ", condition=" + condition +
+                ", condition=" + itemCondition +
                 ", purpose='" + purpose + '\'' +
                 '}';
     }

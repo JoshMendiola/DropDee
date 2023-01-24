@@ -84,16 +84,14 @@ public class BandControllerTests
     @Test
     public void updateBand()
     {
-        Band testBand = new Band();
-        testBand.setBandID(1000);
-        testBand.setName("Johmen and the Johmens");
-        testBand.setGenre("Punk/Surf");
-        testBand.setBalance(150);
+        firstBand.setName("Johmen and the Johmens");
+        firstBand.setGenre("Punk/Surf");
+        firstBand.setBalance(150);
 
-        bandRepository.save(testBand);
+        bandRepository.save(firstBand);
 
         assert(bandRepository.findById(1000).isPresent());
-        assert(bandRepository.findById(1000).get().equals(testBand));
+        assert(bandRepository.findById(1000).get().equals(firstBand));
 
 
     }
