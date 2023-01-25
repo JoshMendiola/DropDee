@@ -50,11 +50,6 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -82,11 +77,24 @@
 						<artifactId>spring-restdocs-asciidoctor</artifactId>
 						<version>${spring-restdocs.version}</version>
 					</dependency>
+					<dependency>
+						<groupId>org.openjfx</groupId>
+						<artifactId>javafx-controls</artifactId>
+						<version>19</version>
+					</dependency>
 				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.8</version>
+				<configuration>
+					<mainClass>HelloFX</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
