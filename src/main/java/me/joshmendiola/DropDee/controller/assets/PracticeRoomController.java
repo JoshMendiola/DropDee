@@ -2,6 +2,7 @@ package me.joshmendiola.DropDee.controller.assets;
 
 import me.joshmendiola.DropDee.model.assets.PracticeRoom;
 import me.joshmendiola.DropDee.repository.assets.PracticeRoomRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,10 @@ public class PracticeRoomController
     public PracticeRoom getPracticeRoomById(@PathVariable int id)
     {
         Optional<PracticeRoom> returnPracticeRoom = repository.findById(id);
+        if(returnPracticeRoom.isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }
         return returnPracticeRoom.orElse(null);
     }
 
@@ -43,7 +48,7 @@ public class PracticeRoomController
     //updates by ID
     @PutMapping("/practiceroom/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updatePracticeRoom(@RequestBody PracticeRoom newPracticeRoomData, @PathVariable int id)
+    public void updatePracticeRoom(@RequestBody @NotNull PracticeRoom newPracticeRoomData, @PathVariable int id)
     {
         PracticeRoom oldPracticeRoomData = getPracticeRoomById(id);
         oldPracticeRoomData.setRoomSize(newPracticeRoomData.getRoomSize());
@@ -57,7 +62,12 @@ public class PracticeRoomController
     //deletes by ID
     @DeleteMapping("/practiceroom/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePracticeRoom(@PathVariable int id) {
+    public void deletePracticeRoom(@PathVariable int id)
+    {
+        if(repository.findById(id).isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }
         repository.deleteById(id);
     }
 

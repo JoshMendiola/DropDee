@@ -1,6 +1,5 @@
 package me.joshmendiola.DropDee.controller.employees;
 
-import me.joshmendiola.DropDee.model.assets.Band;
 import me.joshmendiola.DropDee.model.employees.Employee;
 import me.joshmendiola.DropDee.repository.employees.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import java.util.Optional;
 public class EmployeeController
 {
     @Autowired
-    EmployeeRepository employeeRepository;
+    EmployeeRepository repository;
 
     //GET MAPPINGS
 
@@ -23,7 +22,7 @@ public class EmployeeController
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Employee> getAllEmployees()
     {
-        return employeeRepository.findAll();
+        return repository.findAll();
     }
 
     //gets employee by singular ID
@@ -31,7 +30,11 @@ public class EmployeeController
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Employee getEmployeeById(@PathVariable int id)
     {
-        Optional<Employee> returnEmployee = employeeRepository.findById(id);
+        Optional<Employee> returnEmployee = repository.findById(id);
+        if(returnEmployee.isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }
         return returnEmployee.orElse(null);
     }
 
@@ -40,7 +43,7 @@ public class EmployeeController
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Employee> getEmployeeByLastName(@PathVariable String lastName)
     {
-        return employeeRepository.findByLastName(lastName);
+        return repository.findByLastName(lastName);
     }
 
     //POST MAPPINGS
@@ -49,7 +52,7 @@ public class EmployeeController
     @PostMapping("/employee")
     @ResponseStatus(HttpStatus.CREATED)
     public Employee addEmployee(@RequestBody Employee employee) {
-        return employeeRepository.save(employee);
+        return repository.save(employee);
     }
 
     //UPDATE MAPPINGS
@@ -70,7 +73,7 @@ public class EmployeeController
         oldEmployeeData.setPosition(newEmployeeData.getPosition());
         oldEmployeeData.setSocialSecurity(newEmployeeData.getSocialSecurity());
         oldEmployeeData.setStartDate(newEmployeeData.getStartDate());
-        employeeRepository.save(oldEmployeeData);
+        repository.save(oldEmployeeData);
     }
 
     //DELETE MAPPINGS
@@ -78,13 +81,20 @@ public class EmployeeController
     //deletes by ID
     @DeleteMapping("/employee/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEmployee(@PathVariable int id) {employeeRepository.deleteById(id);
+    public void deleteEmployee(@PathVariable int id)
+    {
+        if(repository.findById(id).isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }
+        repository.deleteById(id);
     }
 
     //deletes all employees
     @DeleteMapping("/employees")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAllEmployees() {employeeRepository.deleteAll();
+    public void deleteAllEmployees() {
+        repository.deleteAll();
     }
 
 }

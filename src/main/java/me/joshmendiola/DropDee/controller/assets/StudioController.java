@@ -2,6 +2,7 @@ package me.joshmendiola.DropDee.controller.assets;
 
 import me.joshmendiola.DropDee.model.assets.Studio;
 import me.joshmendiola.DropDee.repository.assets.StudioRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,10 @@ public class StudioController
     public Studio getStudioById(@PathVariable int id)
     {
         Optional<Studio> returnStudio = repository.findById(id);
+        if(returnStudio.isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }
         return returnStudio.orElse(null);
     }
 
@@ -43,7 +48,7 @@ public class StudioController
     //updates by ID
     @PutMapping("/studio/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateStudio(@RequestBody Studio newStudioData, @PathVariable int id)
+    public void updateStudio(@RequestBody @NotNull Studio newStudioData, @PathVariable int id)
     {
         Studio oldStudioData = getStudioById(id);
         oldStudioData.setStudioType(newStudioData.getStudioType());
@@ -55,8 +60,12 @@ public class StudioController
     //deletes by ID
     @DeleteMapping("/studio/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteStudio(@PathVariable int id) {
-        repository.deleteById(id);
+    public void deleteStudio(@PathVariable int id)
+    {
+        if(repository.findById(id).isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }repository.deleteById(id);
     }
 
     //deletes all studios
