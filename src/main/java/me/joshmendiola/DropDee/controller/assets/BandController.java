@@ -2,6 +2,7 @@ package me.joshmendiola.DropDee.controller.assets;
 
 import me.joshmendiola.DropDee.model.assets.Band;
 import me.joshmendiola.DropDee.repository.assets.BandRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -64,7 +65,7 @@ public class BandController
     //updates by ID
     @PutMapping("/band/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBand(@RequestBody Band newBandData, @PathVariable int id)
+    public void updateBand(@RequestBody @NotNull Band newBandData, @PathVariable int id)
     {
         Band oldBandData = getBandById(id);
         oldBandData.setBalance(newBandData.getBalance());
