@@ -31,15 +31,23 @@ public class BandController
     public Band getBandById(@PathVariable int id)
     {
         Optional<Band> returnBand = repository.findById(id);
+        if(returnBand.isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }
         return returnBand.orElse(null);
     }
 
     //gets band by name
     @GetMapping("/band/name/{name}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Band getBandByName(@PathVariable String name)
+    public List<Band> getBandByName(@PathVariable String name)
     {
-        return repository.findByName(name).get(0);
+        if(repository.findByName(name).isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that name found !");
+        }
+        return repository.findByName(name);
     }
 
     //POST MAPPINGS
@@ -70,7 +78,12 @@ public class BandController
     //deletes by ID
     @DeleteMapping("/band/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBand(@PathVariable int id) {
+    public void deleteBand(@PathVariable int id)
+    {
+        if(repository.findById(id).isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }
         repository.deleteById(id);
     }
 

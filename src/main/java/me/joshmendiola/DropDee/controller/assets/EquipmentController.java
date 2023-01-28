@@ -31,6 +31,10 @@ public class EquipmentController
     public Equipment getEquipmentById(@PathVariable int id)
     {
         Optional<Equipment> returnEquipment = equipmentRepository.findById(id);
+        if(returnEquipment.isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }
         return returnEquipment.orElse(null);
     }
 
@@ -39,6 +43,10 @@ public class EquipmentController
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Equipment> getEquipmentByBrand(@PathVariable String brand)
     {
+        if(equipmentRepository.findByBrand(brand).isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that name found !");
+        }
         return equipmentRepository.findByBrand(brand);
     }
 
@@ -72,7 +80,12 @@ public class EquipmentController
     //deletes by ID
     @DeleteMapping("/equipment/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEquipment(@PathVariable int id) {
+    public void deleteEquipment(@PathVariable int id)
+    {
+        if(equipmentRepository.findById(id).isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that ID found !");
+        }
         equipmentRepository.deleteById(id);
     }
 
