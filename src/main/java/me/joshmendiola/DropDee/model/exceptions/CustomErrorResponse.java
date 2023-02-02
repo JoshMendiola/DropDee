@@ -29,7 +29,8 @@ public class CustomErrorResponse
         this.message = message;
     }
 
-    public CustomErrorResponse(HttpStatus httpStatus, String message, String stackTrace) {
+    public CustomErrorResponse(HttpStatus httpStatus, String message, String stackTrace)
+    {
         this(httpStatus, message);
         this.stackTrace = stackTrace;
     }
