@@ -4,13 +4,16 @@ import TodoList from './TodoList';
 
 function App() {
     const [todos, setTodos] = useState([])
-    const todoNameRef = useRef();
+    const todoNameRef = useRef()
 
     function handleAddTodo(e)
     {
-        const name = todoNameRef.current
+        const name = todoNameRef.current.value
         if(name === '') return
-        console.log(name);
+        setTodos(prevTodos => {
+            return [...prevTodos, {id: 1, name: name, complete: false}]
+        })
+
     }
   return (
       <>
