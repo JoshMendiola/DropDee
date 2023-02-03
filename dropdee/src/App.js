@@ -31,7 +31,7 @@ function App() {
         setTodos(prevTodos => {
             return [...prevTodos, {id: uuid(), name: name, complete: false}]
         })
-
+        todoNameRef.current.value = null
     }
   return (
       <>
