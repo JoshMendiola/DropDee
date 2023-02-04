@@ -22,7 +22,7 @@ export default function MainAppBar() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        News
+                        Welcome to DropDee
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
