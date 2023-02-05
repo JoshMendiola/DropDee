@@ -57,10 +57,10 @@ public class BandController
     //adds a single band to the database
     @PostMapping("/band")
     @ResponseStatus(HttpStatus.CREATED)
-    public Band addBand(@RequestBody Band band) {
+    public Band addBand(@RequestBody Band band)
+    {
         return repository.save(band);
     }
-
     //UPDATE MAPPINGS
 
     //updates by ID

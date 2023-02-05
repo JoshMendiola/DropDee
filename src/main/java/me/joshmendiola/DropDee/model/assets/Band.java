@@ -3,6 +3,7 @@ package me.joshmendiola.DropDee.model.assets;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
@@ -14,6 +15,8 @@ import java.util.Objects;
 public class Band implements Serializable
 {
     @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy="increment")
     private int bandID;
     private String name;
     private String genre;
