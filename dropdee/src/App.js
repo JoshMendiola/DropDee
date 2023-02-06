@@ -1,6 +1,7 @@
 import React from 'react';
 import MainAppBar from "./components/MainAppBar";
-import Band from "./components/Band";
+import PopularBandsList from "./components/PopularBandsList"
+import BandRegistration from "./components/BandRegistration";
 
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
     return (
       <div className="App">
           <MainAppBar/>
-          <Band/>
+          <PopularBandsList/>
+          <BandRegistration/>
       </div>
   )
 }

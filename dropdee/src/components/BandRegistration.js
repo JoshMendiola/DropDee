@@ -1,15 +1,14 @@
 import {Container, Paper, TextField} from "@mui/material";
-import React, {useId, useState} from "react";
+import React, {useState} from "react";
 import Button from "@mui/material/Button";
 
-export default function Band()
+export default function BandRegistration()
 {
     const paperStyle = {padding: "50px 20x", width: 600 , margin:"20px auto"}
     const [bandID, setBandID] = useState(null)
     const [name, setName] = useState('');
     const [genre, setGenre] = useState('');
     const [balance, setBalance] = useState(0);
-
     const handleBandSubmit=(e) =>
     {
         e.preventDefault()
@@ -19,7 +18,7 @@ export default function Band()
                 method: "POST",
                 headers:{"content-type":"Application/json"},
                 body: JSON.stringify(band)
-            }).then(() => console.log("New Band Added"))
+            }).then(() => console.log("New Band Registered"))
     }
 
     return (
