@@ -1,4 +1,4 @@
-package me.joshmendiola.DropDee.model.exceptions;
+package me.joshmendiola.DropDee.service.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +15,13 @@ public class CustomControllerAdvice
     public ResponseEntity<CustomErrorResponse> handleNullPointerExceptions(Exception e)
     {
         HttpStatus status = HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(new CustomErrorResponse(status, e.getMessage()), status);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<CustomErrorResponse> handleIllegalArgumentExceptions(Exception e)
+    {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(new CustomErrorResponse(status, e.getMessage()), status);
     }
 

@@ -39,7 +39,12 @@ public class StudioController
     //adds a single practice room to the database
     @PostMapping("/studio")
     @ResponseStatus(HttpStatus.CREATED)
-    public Studio addStudio(@RequestBody Studio studio) {
+    public Studio addStudio(@RequestBody Studio studio)
+    {
+        if(repository.existsById(studio.getStudioID()))
+        {
+            throw new IllegalArgumentException("ERROR: An entity with that ID already exists in the database");
+        }
         return repository.save(studio);
     }
 

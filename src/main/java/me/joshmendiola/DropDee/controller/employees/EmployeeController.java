@@ -51,7 +51,12 @@ public class EmployeeController
     //adds a single employee to the database
     @PostMapping("/employee")
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee addEmployee(@RequestBody Employee employee) {
+    public Employee addEmployee(@RequestBody Employee employee)
+    {
+        if(repository.existsById(employee.getEmployeeID()))
+        {
+            throw new IllegalArgumentException("ERROR: An entity with that ID already exists in the database");
+        }
         return repository.save(employee);
     }
 

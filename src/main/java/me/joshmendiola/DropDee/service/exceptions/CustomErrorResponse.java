@@ -1,4 +1,4 @@
-package me.joshmendiola.DropDee.model.exceptions;
+package me.joshmendiola.DropDee.service.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;

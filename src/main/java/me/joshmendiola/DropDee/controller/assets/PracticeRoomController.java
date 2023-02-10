@@ -39,7 +39,12 @@ public class PracticeRoomController
     //adds a single practice room to the database
     @PostMapping("/practiceroom")
     @ResponseStatus(HttpStatus.CREATED)
-    public PracticeRoom addPracticeRoom(@RequestBody PracticeRoom practiceRoom) {
+    public PracticeRoom addPracticeRoom(@RequestBody PracticeRoom practiceRoom)
+    {
+        if(repository.existsById(practiceRoom.getRoomID()))
+        {
+            throw new IllegalArgumentException("ERROR: An entity with that ID already exists in the database");
+        }
         return repository.save(practiceRoom);
     }
 

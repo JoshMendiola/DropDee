@@ -59,6 +59,10 @@ public class BandController
     @ResponseStatus(HttpStatus.CREATED)
     public Band addBand(@RequestBody Band band)
     {
+        if(repository.existsById(band.getBandID()))
+        {
+            throw new IllegalArgumentException("ERROR: An entity with that ID already exists in the database");
+        }
         return repository.save(band);
     }
     //UPDATE MAPPINGS

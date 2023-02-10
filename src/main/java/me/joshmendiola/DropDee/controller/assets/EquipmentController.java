@@ -56,7 +56,15 @@ public class EquipmentController
     //adds a single equipment to the database
     @PostMapping("/equipment")
     @ResponseStatus(HttpStatus.CREATED)
-    public Equipment addEquipment(@RequestBody Equipment equipment) {return repository.save(equipment);}
+    public Equipment addEquipment(@RequestBody Equipment equipment)
+    {
+        if(repository.existsById(equipment.getEquipmentID()))
+        {
+            throw new IllegalArgumentException("ERROR: An entity with that ID already exists in the database");
+        }
+
+        return repository.save(equipment);
+    }
 
     //UPDATE MAPPINGS
 
