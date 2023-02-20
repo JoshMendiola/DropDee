@@ -4,7 +4,7 @@ import PopularBandsList from "./components/PopularBandsList"
 import BandRegistration from "./components/BandRegistration";
 
 
-function App() {
+function Home() {
 
     return (
       <div className="App">
@@ -16,4 +16,4 @@ function App() {
 }
 
 
-export default App;
+export default Home;

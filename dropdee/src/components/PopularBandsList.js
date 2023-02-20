@@ -5,7 +5,7 @@ import {Container, List, ListItemButton, ListItemText, Paper} from "@mui/materia
 
 export default function PopularBandsList()
 {
-    const paperStyle = {padding: "50px 20x", width: 700 , margin:"40px auto"}
+    const paperStyle = {padding: "25px 20x", width: 700 , margin:"40px auto"}
     const bandStyle = {margin:"auto", textAlign:"center"}
     const [topBands, setTopBands] = useState([]);
 

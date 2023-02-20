@@ -25,6 +25,7 @@ export default function MainAppBar()
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Welcome to DropDee
                     </Typography>
+                    <Button color="inherit">Register</Button>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
