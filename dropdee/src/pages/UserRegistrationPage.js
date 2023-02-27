@@ -1,13 +1,12 @@
 import React from 'react';
-import MainAppBar from "../components/MainAppBar";
+import UserRegistration from "../components/UserRegistration";
 
 
 function UserRegistrationPage() {
 
     return (
         <div className="App">
-            <MainAppBar/>
-            <UserRegistrationPage/>
+            <UserRegistration/>
         </div>
     )
 }

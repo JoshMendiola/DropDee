@@ -25,26 +25,26 @@ export default function UserRegistration()
     return (
         <Container>
             <Paper elevation = {3} style = {paperStyle}>
-                <h1 style = {{color:"blue"}}>Register your band !</h1>
+                <h1 style = {{color:"blue", textAlign:'center', alignSelf: 'center'}}>Register for DropDee !</h1>
                 <form noValidate autoComplete={"off"}>
-                    <TextField id="usernameInput" label="Username" variant="outlined" fullWidth
-                               value={username}
-                               onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <TextField id="passwordInput" label="Username" variant="outlined" fullWidth
-                               value={password}
-                               onChange={(e) => setPassword(e.target.value)}
-                    />
                     <TextField id="emailInput" label="Email" variant="outlined" fullWidth
                                value={email}
                                onChange={(e) => setEmail(e.target.value)}
                     />
-                    <TextField id="phoneNumberInput" label="Phonenumber" variant="outlined" fullWidth
+                    <TextField id="phoneNumberInput" label="Phone Number" variant="outlined" fullWidth
                                value={phoneNumber}
                                onChange={(e) => setUsername(e.target.value)}
                     />
+                    <TextField id="usernameInput" label="Username" variant="outlined" fullWidth
+                               value={username}
+                               onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <TextField id="passwordInput" label="Password" variant="outlined" fullWidth
+                               value={password}
+                               onChange={(e) => setPassword(e.target.value)}
+                    />
                     <Button variant="contained"
-                            style = {{margin: "auto"}}
+                            style = {{margin: "auto", textAlign:'center', justifyContent: 'center'}}
                             onClick = {handleUserSubmit}
                     >
                         Submit</Button>
