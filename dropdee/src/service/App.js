@@ -3,6 +3,7 @@ import MainAppBar from "../components/MainAppBar";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import UserRegistrationPage from "../pages/UserRegistrationPage";
+import UserLoginPage from "../pages/UserLoginPage";
 
 
 
@@ -16,6 +17,7 @@ export default function App()
                     <Routes>
                         <Route path = "/" element={<HomePage/>}> </Route>
                         <Route path = "/register" element={<UserRegistrationPage/>}> </Route>
+                        <Route path = "/login" element={<UserLoginPage/>}> </Route>
                     </Routes>
                 </div>
             </div>

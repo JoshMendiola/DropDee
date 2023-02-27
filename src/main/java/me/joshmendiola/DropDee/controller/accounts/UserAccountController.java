@@ -28,8 +28,20 @@ public class UserAccountController
         return repository.findAll();
     }
 
-    //gets band by singular ID
-    @GetMapping("/useraccount/{id}")
+    //gets user by name
+    @GetMapping("/user/{username}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public List<UserAccount> getUserAccountByUsername(@PathVariable String username)
+    {
+        if(repository.findByUsername(username).isEmpty())
+        {
+            throw new NullPointerException("ERROR: No entities with that name found !");
+        }
+        return repository.findByUsername(username);
+    }
+
+    //gets user by singular ID
+    @GetMapping("/useraccount/id/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public UserAccount geUserAccountById(@PathVariable UUID id)
     {
@@ -39,18 +51,6 @@ public class UserAccountController
             throw new NullPointerException("ERROR: No entities with that ID found !");
         }
         return returnUserAccount.orElse(null);
-    }
-
-    //gets band by name
-    @GetMapping("/user/username/{username}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<UserAccount> getUserAccountByUsername(@PathVariable String username)
-    {
-        if(repository.findByUsername(username).isEmpty())
-        {
-            throw new NullPointerException("ERROR: No entities with that name found !");
-        }
-        return repository.findByUsername(username);
     }
 
     //POST MAPPINGS
