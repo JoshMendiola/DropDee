@@ -13,11 +13,9 @@ export default function UserLogin()
         e.preventDefault()
         const userLoginDetails = {username, password}
         console.log(userLoginDetails)
-        fetch("http://localhost:8080/user/{username}", {
-            method: "POST",
-            headers:{"content-type":"Application/json"},
-            body: JSON.stringify(userLoginDetails)
-        }).then(() => console.log("Login Complete"))
+        fetch("http://localhost:8080/users/{username}")
+            .then(res => res.json())
+            .then((result) => {console.log(result)})
     }
 
     return (
@@ -26,11 +24,11 @@ export default function UserLogin()
                 <h1 style = {{color:"blue", textAlign:'center', alignSelf: 'center'}}>Login to DropDee !</h1>
                 <form noValidate autoComplete={"off"}>
                     <TextField id="usernameInput" label="Username" variant="outlined" fullWidth
-                               value={username}
+                               value={null}
                                onChange={(e) => setUsername(e.target.value)}
                     />
                     <TextField id="passwordInput" label="Password" variant="outlined" fullWidth
-                               value={password}
+                               value={null}
                                onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button variant="contained"

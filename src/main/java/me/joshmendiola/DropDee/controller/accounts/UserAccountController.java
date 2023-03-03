@@ -1,7 +1,6 @@
 package me.joshmendiola.DropDee.controller.accounts;
 
 import me.joshmendiola.DropDee.model.accounts.UserAccount;
-import me.joshmendiola.DropDee.model.assets.Band;
 import me.joshmendiola.DropDee.repository.accounts.UserAccountRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin
 public class UserAccountController
 {
     @Autowired
@@ -60,6 +60,11 @@ public class UserAccountController
     @ResponseStatus(HttpStatus.CREATED)
     public UserAccount addUserAccount(@RequestBody UserAccount userAccount)
     {
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid);
+        userAccount.setUserID(uuid);
+
+
         if(repository.existsById(userAccount.getUserID()))
         {
             throw new IllegalArgumentException("ERROR: An entity with that ID already exists in the database");

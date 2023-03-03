@@ -1,15 +1,20 @@
 package me.joshmendiola.DropDee.model.accounts;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "Useraccount")
 public class UserAccount
 {
     @Id
+    @GeneratedValue
+    @UuidGenerator
     private UUID UserID;
     private String username;
     private String bio;

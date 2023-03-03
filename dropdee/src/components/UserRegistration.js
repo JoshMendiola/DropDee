@@ -5,15 +5,16 @@ import Button from "@mui/material/Button";
 export default function UserRegistration()
 {
     const paperStyle = {padding: "50px 20x", width: 600 , margin:"20px auto"}
-    const [userID, setUserID] = useState(null)
+    const [userID, setUserID] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [email, setEmail] = useState(null);
-    const [phoneNumber, setPhoneNumber] = useState(null)
+    const [email, setEmail] = useState('');
+    const [phonenumber, setPhoneNumber] = useState('');
+    const [bio, setBio] = useState(null);
     const handleUserSubmit=(e) =>
     {
         e.preventDefault()
-        const user = {userID, username, password, email, phoneNumber}
+        const user = {userID, username, bio , password, email, phoneNumber: phonenumber}
         console.log(user)
         fetch("http://localhost:8080/useraccount", {
             method: "POST",
@@ -32,8 +33,8 @@ export default function UserRegistration()
                                onChange={(e) => setEmail(e.target.value)}
                     />
                     <TextField id="phoneNumberInput" label="Phone Number" variant="outlined" fullWidth
-                               value={phoneNumber}
-                               onChange={(e) => setUsername(e.target.value)}
+                               value={phonenumber}
+                               onChange={(e) => setPhoneNumber(e.target.value)}
                     />
                     <TextField id="usernameInput" label="Username" variant="outlined" fullWidth
                                value={username}
