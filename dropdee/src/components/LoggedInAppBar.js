@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {Link} from 'react-router-dom';
 
-export default function UnloggedAppBar()
+export default function LoggedInAppBar()
 {
 
     return (
@@ -30,11 +30,8 @@ export default function UnloggedAppBar()
                     <Button color="inherit" component = {Link} to = "/">
                         Home
                     </Button>
-                    <Button color="inherit" component = {Link} to = "/login">
-                        Login
-                    </Button>
-                    <Button color="inherit" component = {Link} to = "/register">
-                        Register
+                    <Button color="inherit">
+                        Account
                     </Button>
                 </Toolbar>
             </AppBar>

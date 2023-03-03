@@ -1,19 +1,28 @@
-import React from 'react';
-import UnloggedAppBar from "../components/UnloggedAppBar";
+import React, {useState} from 'react';
+import LoggedOutAppBar from "../components/LoggedOutAppBar";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import UserRegistrationPage from "../pages/UserRegistrationPage";
 import UserLoginPage from "../pages/UserLoginPage";
-import AppBarController from "./AppBarController";
+import LoggedInAppBar from "../components/LoggedInAppBar";
+import AuthContext from "./AuthContext";
 
 
 
 export default function App()
 {
+
+    const [loggedIn, setLoggedIn] = useState(false);
+    function changeAppBar() {
+        setLoggedIn(true);
+    }
+
     return (
         <Router>
             <div className="App">
-                <AppBarController/>
+                <AuthContext.Provider value={{ loggedIn, changeAppBar }}>
+                    {loggedIn ? <LoggedInAppBar /> : <LoggedOutAppBar />}
+                </AuthContext.Provider>
                 <div className="content">
                     <Routes>
                         <Route path = "/" element={<HomePage/>}> </Route>
