@@ -27,7 +27,7 @@ export default function App()
                     <Routes>
                         <Route path = "/" element={<HomePage/>}> </Route>
                         <Route path = "/register" element={<UserRegistrationPage/>}> </Route>
-                        <Route path = "/login" element={<UserLoginPage/>}> </Route>
+                        <Route path = "/login" element={<UserLoginPage changeAppBar={changeAppBar}/>}> </Route>
                     </Routes>
                 </div>
             </div>

@@ -8,18 +8,19 @@ export default function UserLogin(props)
     const paperStyle = {padding: "50px 20x", width: 600 , margin:"20px auto"}
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loggedIn, setLoggedIn] = useState(AuthContext);
 
     const handleLoginSubmit=(e) =>
     {
         e.preventDefault()
         const userLoginDetails = {username, password}
         console.log(userLoginDetails)
-        props.onLogin()
         fetch(`http://localhost:8080/user/login/${username}/${password}`)
             .then(res => res.json())
-            .then()
-
+            .then(changeAppBar)
+    }
+    const changeAppBar = () =>
+    {
+        props.changeAppBar()
     }
 
     return (
