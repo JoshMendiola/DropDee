@@ -13,7 +13,7 @@ export default function LoggedInAppBar()
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" style={{backgroundColor: 'maroon'}}>
                 <Toolbar>
                     <IconButton
                         size="large"
