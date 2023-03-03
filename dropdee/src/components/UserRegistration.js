@@ -10,13 +10,13 @@ export default function UserRegistration()
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [phonenumber, setPhoneNumber] = useState('');
-    const [bio, setBio] = useState(null);
+    const [bio, setBio] = useState('');
     const handleUserSubmit=(e) =>
     {
         e.preventDefault()
         const user = {userID, username, bio , password, email, phoneNumber: phonenumber}
         console.log(user)
-        fetch("http://localhost:8080/useraccount", {
+        fetch("http://localhost:8080/user", {
             method: "POST",
             headers:{"content-type":"Application/json"},
             body: JSON.stringify(user)

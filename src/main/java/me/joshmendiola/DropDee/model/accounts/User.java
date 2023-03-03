@@ -10,7 +10,7 @@ import java.util.UUID;
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "Useraccount")
-public class UserAccount
+public class User
 {
     @Id
     @GeneratedValue
@@ -86,7 +86,7 @@ public class UserAccount
     public boolean equals(Object o)
     {
         if (this == o) return true;
-        if (!(o instanceof UserAccount that)) return false;
+        if (!(o instanceof User that)) return false;
         return Objects.equals(getUserID(), that.getUserID()) && Objects.equals(getUsername(), that.getUsername()) && Objects.equals(getBio(), that.getBio()) && Objects.equals(getPassword(), that.getPassword()) && Objects.equals(getEmail(), that.getEmail()) && Objects.equals(getPhoneNumber(), that.getPhoneNumber());
     }
 

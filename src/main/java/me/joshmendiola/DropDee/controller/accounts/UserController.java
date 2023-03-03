@@ -1,7 +1,8 @@
 package me.joshmendiola.DropDee.controller.accounts;
 
-import me.joshmendiola.DropDee.model.accounts.UserAccount;
-import me.joshmendiola.DropDee.repository.accounts.UserAccountRepository;
+import me.joshmendiola.DropDee.model.accounts.User;
+import me.joshmendiola.DropDee.repository.accounts.UserRepository;
+import me.joshmendiola.DropDee.service.utils.AuthService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,17 +14,17 @@ import java.util.UUID;
 
 @RestController
 @CrossOrigin
-public class UserAccountController
+public class UserController
 {
     @Autowired
-    UserAccountRepository repository;
+    UserRepository repository;
 
     //GET MAPPINGS
 
     //gets all bands
-    @GetMapping("/useraccounts")
+    @GetMapping("/user")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<UserAccount> getAllUserAccounts()
+    public List<User> getAllUserAccounts()
     {
         return repository.findAll();
     }
@@ -31,21 +32,34 @@ public class UserAccountController
     //gets user by name
     @GetMapping("/user/{username}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<UserAccount> getUserAccountByUsername(@PathVariable String username)
+    public User getUserAccountByUsername(@PathVariable String username)
     {
-        if(repository.findByUsername(username).isEmpty())
-        {
-            throw new NullPointerException("ERROR: No entities with that name found !");
-        }
         return repository.findByUsername(username);
     }
 
-    //gets user by singular ID
-    @GetMapping("/useraccount/id/{id}")
+    //logs in with password checking
+    @GetMapping("/user/login/{username}/{password}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public UserAccount geUserAccountById(@PathVariable UUID id)
+    public User loginUserAccount(@PathVariable String username, @PathVariable String password)
     {
-        Optional<UserAccount> returnUserAccount = repository.findById(id);
+        AuthService authService = new AuthService(repository);
+        boolean loginSuccess = authService.authenticate(username, password);
+        if(loginSuccess)
+        {
+            return repository.findByUsername(username);
+        }
+        else
+        {
+            throw new NullPointerException("No account with that username/password found !");
+        }
+    }
+
+    //gets user by singular ID
+    @GetMapping("/user/id/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public User geUserAccountById(@PathVariable UUID id)
+    {
+        Optional<User> returnUserAccount = repository.findById(id);
         if(returnUserAccount.isEmpty())
         {
             throw new NullPointerException("ERROR: No entities with that ID found !");
@@ -56,9 +70,9 @@ public class UserAccountController
     //POST MAPPINGS
 
     //adds a single band to the database
-    @PostMapping("/useraccount")
+    @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserAccount addUserAccount(@RequestBody UserAccount userAccount)
+    public User addUserAccount(@RequestBody User userAccount)
     {
         UUID uuid = UUID.randomUUID();
         System.out.println(uuid);
@@ -74,11 +88,11 @@ public class UserAccountController
     //UPDATE MAPPINGS
 
     //updates by ID
-    @PutMapping("/useraccount/{id}")
+    @PutMapping("/user/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateUserAccount(@RequestBody @NotNull UserAccount newUserAccount, @PathVariable UUID id)
+    public void updateUserAccount(@RequestBody @NotNull User newUserAccount, @PathVariable UUID id)
     {
-        UserAccount userAccount = geUserAccountById(id);
+        User userAccount = geUserAccountById(id);
         userAccount.setBio(newUserAccount.getBio());
         userAccount.setEmail(newUserAccount.getEmail());
         userAccount.setUsername(newUserAccount.getUsername());
@@ -91,7 +105,7 @@ public class UserAccountController
     //DELETE MAPPINGS
 
     //deletes by ID
-    @DeleteMapping("/useraccount/{id}")
+    @DeleteMapping("/user/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUserAccount(@PathVariable UUID id)
     {
