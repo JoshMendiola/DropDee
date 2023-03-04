@@ -30,8 +30,11 @@ export default function LoggedInAppBar()
                     <Button color="inherit" component = {Link} to = "/">
                         Home
                     </Button>
-                    <Button color="inherit">
+                    <Button color="inherit" component = {Link} to = "/account">
                         Account
+                    </Button>
+                    <Button color="inherit">
+                        Drop
                     </Button>
                 </Toolbar>
             </AppBar>

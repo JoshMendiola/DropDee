@@ -2,11 +2,11 @@ import React from 'react';
 import UserRegistration from "../components/UserRegistration";
 
 
-function UserRegistrationPage() {
+function UserRegistrationPage(props) {
 
     return (
         <div className="App">
-            <UserRegistration/>
+            <UserRegistration handleLogin={props.handleLogin}/>
         </div>
     )
 }

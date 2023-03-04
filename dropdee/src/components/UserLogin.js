@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Container, Paper, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
-import AuthContext from "../service/AuthContext";
 
 export default function UserLogin(props)
 {
@@ -20,7 +19,7 @@ export default function UserLogin(props)
     }
     const changeAppBar = () =>
     {
-        props.changeAppBar()
+        props.handleLogin();
     }
 
     return (

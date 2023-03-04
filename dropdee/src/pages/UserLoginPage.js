@@ -5,7 +5,7 @@ export default function UserLoginPage(props) {
 
     return (
         <div className="App">
-            <UserLogin changeAppBar = {props.changeAppBar}/>
+            <UserLogin handleLogin = {props.handleLogin}/>
         </div>
     )
 }

@@ -14,7 +14,7 @@ export default function UserRegistration()
     const handleUserSubmit=(e) =>
     {
         e.preventDefault()
-        const user = {userID, username, bio , password, email, phoneNumber: phonenumber}
+        const user = {userID, username, bio , password, email, phonenumber}
         console.log(user)
         fetch("http://localhost:8080/user", {
             method: "POST",
