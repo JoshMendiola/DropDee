@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import LoggedOutAppBar from "../components/LoggedOutAppBar";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import HomePage from "../pages/HomePage";
@@ -15,10 +15,13 @@ export default function App()
 
     const [loggedIn, setLoggedIn] = useState(false);
     const [userID, setUserID] = useState(null)
+
+    useEffect(() => {
+    }, [userID]);
+
     function handleLogin(ID) {
         setLoggedIn(true);
         setUserID(ID)
-        console.log(ID)
     }
 
     return (
@@ -32,7 +35,7 @@ export default function App()
                         <Route path = "/" element={<HomePage/>}> </Route>
                         <Route path = "/register" element={<UserRegistrationPage handleLogin={handleLogin}/>}> </Route>
                         <Route path = "/login" element={<UserLoginPage handleLogin={handleLogin}/>}> </Route>
-                        <Route path = "/account" element={<AccountPage userID = {{userID}}/>}> </Route>
+                        <Route path = "/account" element={<AccountPage userID = {userID}/>}> </Route>
                     </Routes>
                 </div>
             </div>

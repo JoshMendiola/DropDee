@@ -3,16 +3,15 @@ import AccountInfo from "../components/AccountInfo";
 
 export default function AccountPage(props)
 {
-    const [userID, setUserID] = useState(props.userID);
     const [userInfo, setUserInfo] = useState(null);
 
-    console.log(userID)
 
     useEffect(() => {
-        fetch(`http://localhost:8080/user/id/${userID}`)
+        fetch(`http://localhost:8080/user/id/${props.userID}`)
             .then(res => res.json())
-            .then((result) => {setUserInfo(result)})
-    }, [])
+            .then(result => setUserInfo(result))
+            .catch(error => console.log(error));
+    }, [props.userID])
 
     console.log(userInfo)
 
