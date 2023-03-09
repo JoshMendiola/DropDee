@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function AccountInfo(props)
 {
-
+    const [userinfo, setUserinfo] = useState(props.userInfo)
     return (
         <div>
-            <h1></h1>
+            <h1>{userinfo}</h1>
         </div>
     );
 }

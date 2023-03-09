@@ -15,22 +15,24 @@ export default function App()
 
     const [loggedIn, setLoggedIn] = useState(false);
     const [userID, setUserID] = useState(null)
-    function handleLogin() {
+    function handleLogin(ID) {
         setLoggedIn(true);
+        setUserID(ID)
+        console.log(ID)
     }
 
     return (
         <Router>
             <div className="App">
                 <AuthContext.Provider value={{ loggedIn, handleLogin }}>
-                    {loggedIn ? <LoggedInAppBar /> : <LoggedOutAppBar />}
+                    {loggedIn ? <LoggedInAppBar /> : <LoggedOutAppBar/>}
                 </AuthContext.Provider>
                 <div className="content">
                     <Routes>
                         <Route path = "/" element={<HomePage/>}> </Route>
                         <Route path = "/register" element={<UserRegistrationPage handleLogin={handleLogin}/>}> </Route>
                         <Route path = "/login" element={<UserLoginPage handleLogin={handleLogin}/>}> </Route>
-                        <Route path = "/account" element={<AccountPage/>}> </Route>
+                        <Route path = "/account" element={<AccountPage userID = {{userID}}/>}> </Route>
                     </Routes>
                 </div>
             </div>

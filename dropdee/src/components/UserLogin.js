@@ -7,19 +7,20 @@ export default function UserLogin(props)
     const paperStyle = {padding: "50px 20x", width: 600 , margin:"20px auto"}
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [userID, setUserID] = useState('')
 
     const handleLoginSubmit=(e) =>
     {
         e.preventDefault()
         const userLoginDetails = {username, password}
-        console.log(userLoginDetails)
         fetch(`http://localhost:8080/user/login/${username}/${password}`)
             .then(res => res.json())
+            .then((result => setUserID(result.userID)))
             .then(changeAppBar)
     }
     const changeAppBar = () =>
     {
-        props.handleLogin();
+        props.handleLogin(userID);
     }
 
     return (
